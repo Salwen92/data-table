@@ -5,7 +5,7 @@ import {
   TableRow,
   TableSortLabel,
 } from "@material-ui/core";
-import React from "react";
+import * as React from "react";
 import { IColumn, TableHeadPropsType } from "../types";
 
 export const TableHead: React.FC<TableHeadPropsType> = (props) => {

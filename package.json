@@ -1,11 +1,42 @@
 {
   "name": "generic-data-table",
   "version": "1.0.0",
-  "main": "dist/GenericDataTable.js",
-  "typings": "dist/index.d.ts",
+  "types": "./dist/GenericDataTable.d.ts",
+  "main": "./dist/GenericDataTable.js",
   "author": "Simply Smart Engineering ",
   "license": "MIT",
   "sideEffects": false,
+  "scripts": {
+    "start": "parcel ./example/app/index.html --open --port 3005",
+    "build": "tsc",
+    "fastbuild": "esbuild ./src/*.tsx ./src/**/*.tsx --outdir=dist && tsc --emitDeclarationOnly ",
+    "format": "prettier --write **/*.ts{,x}",
+    "typecheck": "tsc --noEmit",
+    "emit-declaration": "tsc --emitDeclarationOnly",
+    "test": "jest --coverage",
+    "lint-staged": "lint-staged",
+    "check": "npm run lint && npm test",
+    "lint": "tsc --noEmit && esbuild ./src/**/*.{ts,tsx}",
+    "lint:fix": "eslint ./src/**/*.{ts,tsx} --quiet --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged",
+      "post-commit": "pnpm outdated"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "4.9.1",
@@ -15,7 +46,6 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.8",
     "@types/react": "^16.9.49",
     "@types/react-dom": "16.9.8",
     "@types/styled-components": "^5.1.3",
@@ -32,37 +62,6 @@
     "typescript": "^4.0.3"
   },
   "parcelCleanPaths": [
-    "dist/*.*"
-  ],
-  "scripts": {
-    "start": "parcel ./example/app/index.html --open --port 3005",
-    "fastbuild": "esbuild ./src/GenericDataTable.tsx --bundle --outdir=dist --define:process.env.NODE_ENV=\"production\" && cp ./src/types.d.ts ./dist/ ",
-    "fastbuild-windows": "esbuild app.jsx --bundle --outfile=out.js",
-    "format": "prettier --write **/*.ts{,x}",
-    "typecheck": "tsc --noEmit",
-    "test": "jest --coverage",
-    "lint-staged": "lint-staged",
-    "build": "tsc",
-    "check": "npm run lint && npm test",
-    "lint": "tsc --noEmit && esbuild ./src/**/*.{ts,tsx}",
-    "lint:fix": "eslint ./src/**/*.{ts,tsx} --quiet --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc --noEmit && lint-staged",
-      "post-commit": "npm outdated"
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "./example/demo/*.*"
+  ]
 }

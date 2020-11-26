@@ -1,8 +1,8 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import { localData, localDataColumns } from "./data/Data";
-import { toolbarOptions } from "../../src/Components/Toolbar/toolbarOptions";
-import GenericDataTable from "../../src/GenericDataTable";
+import { toolbarOptions } from "../../src/types";
+import { GenericDataTable } from "../../src/GenericDataTable";
 
 export default function App() {
   const toolbarOptions: toolbarOptions = {

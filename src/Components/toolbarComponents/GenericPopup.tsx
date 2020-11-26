@@ -3,7 +3,7 @@ import Popover from "@material-ui/core/Popover";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
-import React from "react";
+import * as React from "react";
 import { ToolbarFilter } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>

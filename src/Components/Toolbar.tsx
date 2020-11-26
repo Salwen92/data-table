@@ -11,7 +11,6 @@ import {
   ListItemText,
   makeStyles,
   Switch,
-  Theme,
   Toolbar,
   Tooltip,
   Typography,
@@ -19,17 +18,17 @@ import {
 import { FilterList as FilterListIcon } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ViewColumnIcon from "@material-ui/icons/ViewColumn";
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
 import { ITableToolbar } from "../types";
 
-import GenericPopup from "./Toolbar/GenericPopup";
-import { SearchTextInput } from "./Toolbar/SearchTextInput";
+import GenericPopup from "./toolbarComponents/GenericPopup";
+import { SearchTextInput } from "./toolbarComponents/SearchTextInput";
 
 const ToolbarTitle = styled.div`
   min-width: 150px;
 `;
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     Input: {
       display: "flex",
@@ -58,16 +57,16 @@ export const TableToolbar = (props: ITableToolbar) => {
   const filteritems = (
     <>
       {columns.map((col) => {
-        if (col.filterable)
-          return (
-            <FormControl className={classes.Input} key={col.name}>
-              <InputLabel>Filter by {col.label}</InputLabel>
-              <Input
-                onChange={(e) => onChangeFilterValue(e.target.value, col.name)}
-                key={col.name}
-              />
-            </FormControl>
-          );
+        if (!col.filterable) return;
+        return (
+          <FormControl className={classes.Input} key={col.name}>
+            <InputLabel>Filter by {col.label}</InputLabel>
+            <Input
+              onChange={(e) => onChangeFilterValue(e.target.value, col.name)}
+              key={col.name}
+            />
+          </FormControl>
+        );
       })}
     </>
   );
@@ -140,7 +139,7 @@ export const TableToolbar = (props: ITableToolbar) => {
             <Tooltip title="Delete">
               <IconButton
                 aria-label="Delete"
-                onClick={(e) => onDelete(selected)}
+                onClick={() => onDelete(selected)}
               >
                 <DeleteIcon color="secondary" />
               </IconButton>

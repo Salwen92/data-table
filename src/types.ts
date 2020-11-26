@@ -1,4 +1,3 @@
-export * from './GenericDataTable'
 import { ReactNode } from 'react'
 
 interface ITableToolbar {

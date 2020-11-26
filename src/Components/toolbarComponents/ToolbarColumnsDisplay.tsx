@@ -3,7 +3,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Switch from "@material-ui/core/Switch";
-import React from "react";
+import * as React from "react";
 import { ToolbarColumnDisplayType } from "../../types";
 
 export const ToolbarColumnsDisplay = (props: ToolbarColumnDisplayType) => {
